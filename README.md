@@ -1,3 +1,3 @@
-## Snek game
+## Snake game
 
 This game was made to train JavaScript and logic
