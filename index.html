@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/applebg.png" type="image/x-icon">
+    <title>Snake</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="game-over-container">
+        <div class="pop-up">
+            <div class="game-over-text">
+                <p>GAME<br>OVER</p>
+            </div>
+            <di class="score-container">
+                <p>Score:<span class="final-score">10</span></p>
+            </di>
+            <div class="button-container">
+                <button class="share-btt btt">
+                    Share 
+                    <span>
+                        <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="11" width="8" height="8" rx="4" fill="white"/>
+                            <rect x="22" y="2" width="8" height="8" rx="4" fill="white"/>
+                            <rect x="22" y="20" width="8" height="8" rx="4" fill="white"/>
+                            <rect x="7" y="13.7126" width="18.179" height="1" transform="rotate(-25.8493 7 13.7126)" fill="white"/>
+                            <rect x="7.43604" y="15" width="18.1477" height="1" transform="rotate(25.85 7.43604 15)" fill="white"/>
+                        </svg>
+                    </span>
+                </button>
+                <button class="play-again-btt btt">
+                    Play again
+                </button>
+            </div>
+        </div>
+    </div>
+    <main class="screen">
+        <div class="score">
+            <p>score: <span class="score-value">0</span></p>
+        </div>
+        <div class="grid">
+            
+        </div>
+    </main>
+    <script src="./snake.js"></script>
+</body>
+</html>
