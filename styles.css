@@ -7,6 +7,8 @@
 
 body {
     overflow: hidden;
+    width: 100vw;
+    height: 100vh;
 }
 
 main {
@@ -136,4 +138,89 @@ main {
 
 .play-again-btt:hover {
     background: #1C695E;
+}
+
+ .mobile-cntrollers-area {
+    width: 350px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+.btt-area {
+    margin-top: 8px;
+}
+
+.btt-area button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: #009afe;
+}
+
+.right-left-btt-area {
+    width: 160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-btt {
+    border-radius: 20px 0 0 20px;
+}
+
+.up-btt {
+    border-radius: 20px 20px 0 0;
+}
+
+.right-btt {
+    border-radius: 0 20px 20px 0;
+}
+
+.down-btt {
+    border-radius: 0 0 20px 20px;
+}
+
+.btt-area button:hover {
+    background: #1C695E;
+}
+
+@media (max-width: 594px) {
+    main {
+        width: 100%;
+        height: 100%;
+    }
+
+    .snake {
+        background: #01A004;
+    }
+
+    .apple {
+        background: red;
+        border-radius: 8px;
+    }
+
+    .grid {
+        width: 350px;
+        height: 350px;
+        border: 1px solid white;
+        background: none;
+    }
+
+    .grid div {
+        width: 17.5px;
+        height: 17.5px;
+        /* box-shadow: 1px 1px white; */
+    }
+
+    .score {
+        margin-top: -8%;
+    }
+
+    .mobile-cntrollers-area {
+        display: flex;
+    }
 }

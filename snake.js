@@ -11,7 +11,7 @@ const snake = {
     initialPosition: 329,
     currentPosition: 329,
     direction: null,
-    length: [1, 2],
+    length: 2,
     positions: []
 }
 
@@ -34,19 +34,20 @@ const renderSnake = () => {
     const boxes = document.querySelectorAll('.grid div')
     boxes[snake.initialPosition].classList.add('snake')
 
-    snake.length.forEach(e => {
+    for(let i = 0; i < snake.length; i++) {
         snake.positions.push(snake.initialPosition)
         boxes[snake.initialPosition].classList.add('snake')
         snake.initialPosition += 20
-    })
+    }
 }
 
 const renderApple = () => {
     const boxes = document.querySelectorAll('.grid div')
+    const boxSize = boxes[0].clientHeight
     const leftLimit = boxes[0].offsetLeft
-    const rightLimit = boxes[18].offsetLeft + 30
+    const rightLimit = boxes[19].offsetLeft + boxSize
     const topLimit = boxes[0].offsetTop
-    const bottomLimit = boxes[380].offsetTop + 30
+    const bottomLimit = boxes[380].offsetTop + boxSize
 
     let randomPosition = Math.floor(Math.random() * (378 - 21))
 
@@ -57,13 +58,13 @@ const renderApple = () => {
         } else if(boxes[randomPosition].offsetLeft == leftLimit) {
             randomPosition++
     
-        } else if(boxes[randomPosition].offsetLeft + 30 == rightLimit + 30) {
+        } else if(boxes[randomPosition].offsetLeft + boxSize == rightLimit) {
             randomPosition--
     
         } else if(boxes[randomPosition].offsetTop == topLimit) {
             randomPosition += 20
     
-        } else if(boxes[randomPosition].offsetTop + 30 == bottomLimit) {
+        } else if(boxes[randomPosition].offsetTop + boxSize == bottomLimit) {
             randomPosition -= 20
         } else {
             apple.currentPosition = randomPosition
@@ -93,15 +94,16 @@ const verifyBodyColision = (box) => {
 
 const verifyBorderColision = (box) => {
     const boxes = document.querySelectorAll('.grid div')
+    const boxSize = boxes[0].clientHeight
     const leftLimit = boxes[0].offsetLeft
-    const rightLimit = boxes[18].offsetLeft + 30
+    const rightLimit = boxes[19].offsetLeft + boxSize
     const topLimit = boxes[0].offsetTop
-    const bottomLimit = boxes[380].offsetTop + 30
+    const bottomLimit = boxes[380].offsetTop + boxSize
 
     if(boxes[snake.currentPosition].offsetLeft == leftLimit) {
         if(snake.direction == 'left') snake.currentPosition += 18
 
-    } else if(boxes[snake.currentPosition].offsetLeft + 30 == rightLimit + 30) {
+    } else if(boxes[snake.currentPosition].offsetLeft + boxSize == rightLimit) {
         if(snake.direction == 'right') snake.currentPosition -= 18
 
     } else if(boxes[snake.currentPosition].offsetTop == topLimit) {
@@ -113,7 +115,7 @@ const verifyBorderColision = (box) => {
             }
         }
 
-    } else if(boxes[snake.currentPosition].offsetTop + 30 == bottomLimit) {
+    } else if(boxes[snake.currentPosition].offsetTop + boxSize == bottomLimit) {
         if(snake.direction == 'down') {
             for(let i = 0; i < 20; i++) {
                 if(boxes[snake.currentPosition].offsetLeft == boxes[i].offsetLeft) {
@@ -154,6 +156,33 @@ const reloadGame = () => {
     score.innerHTML = game.score
     reloadButton.addEventListener('click', e => {
         location.reload()
+    })
+}
+
+const useMobileControllers = () => {
+    const up = document.querySelector('.up-btt')
+    const down = document.querySelector('.down-btt')
+    const left = document.querySelector('.left-btt')
+    const right = document.querySelector('.right-btt')
+
+    up.addEventListener('click', e => {
+        game.start = true
+        if(snake.direction != 'down') snake.direction = 'up'
+    })
+
+    down.addEventListener('click', e => {
+        game.start = true
+        if(snake.direction != 'up') snake.direction = 'down'
+    })
+
+    left.addEventListener('click', e => {
+        game.start = true
+        if(snake.direction != 'right') snake.direction = 'left'
+    })
+
+    right.addEventListener('click', e => {
+        game.start = true
+        if(snake.direction != 'left') snake.direction = 'right'
     })
 }
 
@@ -217,6 +246,7 @@ const verifyKeyPressed = () => {
 
 window.onload = () => {
     const move = verifyKeyPressed()
+    useMobileControllers()
     move.callMoveSnake()
     createBoxes()
     renderSnake()
