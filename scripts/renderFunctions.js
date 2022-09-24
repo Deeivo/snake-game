@@ -32,9 +32,9 @@ export const renderApple = () => {
     let randomPosition = Math.floor(Math.random() * (378 - 21))
 
     while(true) {
-        if(randomPosition == snake.currentPosition) { // corrigir isso aqui
+        if(boxes[randomPosition].classList[0] == "snake") { // corrigir isso aqui
             randomPosition = Math.floor(Math.random() * (378 - 21))
-    
+       
         } else if(boxes[randomPosition].offsetLeft == leftLimit) {
             randomPosition++
     
